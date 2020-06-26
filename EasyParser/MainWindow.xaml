@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyParser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="CIAN Parser" Height="450" Width="750">
+    <StackPanel Orientation="Horizontal" Margin="10">
+        <ScrollViewer>
+            <TextBlock x:Name="ListText" Width="500"/>
+        </ScrollViewer>
+        <StackPanel Width="200">
+            <Label Content="Стартовая страница"/>
+            <TextBox x:Name="StartPage" Text="1" TextWrapping="Wrap" Margin="10"/>
+            <Label Content="Последняя страница"/>
+            <TextBox x:Name="EndPage" Text="1" TextWrapping="Wrap" Margin="10"/>
+            <Button x:Name="StartButton" Content="Start" Margin="10"/>
+            <Button x:Name="StopButton" Content="Stop" Margin="10"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

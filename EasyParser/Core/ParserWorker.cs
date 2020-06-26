@@ -13,9 +13,29 @@ namespace EasyParser.Core
     {
         HtmlLoader loader;
 
-        IParser<T> parser { get; set; }
-        IParserSettings settings { 
-            get { return settings; }
+        IParser<T> parser;
+        IParserSettings settings;
+
+        bool isActive;
+
+        public IParser<T> Parser
+        {
+            get
+            {
+                return parser;
+            }
+            set
+            {
+                parser = value;
+            }
+        }
+
+        public IParserSettings Settings
+        {
+            get
+            {
+                return settings;
+            }
             set
             {
                 settings = value;
@@ -23,7 +43,15 @@ namespace EasyParser.Core
             }
         }
 
-        bool IsActive { get; set; }
+        public bool IsActive
+        {
+            get
+            {
+                return isActive;
+            }
+        }
+
+
 
         public event Action<object, T> OnNewData;
         public event Action<object> OnComplited;
@@ -40,13 +68,13 @@ namespace EasyParser.Core
 
         public void Start()
         {
-            IsActive = true;
+            isActive = true;
             Worker();
         }
 
         public void Stop()
         {
-            IsActive = false;
+            isActive = false;
         }
 
         private async void Worker()
@@ -66,11 +94,11 @@ namespace EasyParser.Core
 
                 var result = parser.Parse(document);
 
-                OnNewData?.Invoke(this, result);
+                OnNewData?.Invoke(this, result); 
             }
 
             OnComplited?.Invoke(this);
-            IsActive = false;
+            isActive = false;
         }
     }
 }
